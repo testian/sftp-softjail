@@ -10,6 +10,9 @@ A patch to OpenSSH 6.8p1 to jail clients into directories without chroot
 	There are also attacks possible during the resolution of realpath() but they would probably only expose the contents of symbolic links outside the jail in the worst case.
 2.	This patch is EXPERIMENTAL. In the current state this patch is unreviewed and untested. The patch has been written by a person who writes C once a decade.
 
+## Advantage of soft jails
+chroot() needs root-privileges on Linux, soft jails don't. This way you can fully script what happens when a client connects and which directory the client sees. Assign jails depending on clients public key, create or prepare jail dynamically as the client connects. Combine access with restricted-shells.
+
 ## Usage
 My personal setup is as follows
 In ~/.ssh/authorized_keys I have an entry like
